@@ -10,8 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.vengateshm.dribbox.navigation.homeNavGraph
+import dev.vengateshm.dribbox.navigation.onBoardingNavGraph
 import dev.vengateshm.dribbox.presentation.home.HomeScreen
-import dev.vengateshm.dribbox.presentation.login.LoginScreen
 import dev.vengateshm.dribbox.ui.theme.DribboxTheme
 
 @ExperimentalFoundationApi
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @ExperimentalFoundationApi
 @Composable
 fun MainScreen() {
@@ -36,11 +38,7 @@ fun MainScreen() {
         navController = navController,
         startDestination = Screen.Login.route
     ) {
-        composable(route = Screen.Login.route) {
-            LoginScreen(navController = navController)
-        }
-        composable(route = Screen.Home.route) {
-            HomeScreen(navController = navController)
-        }
+        onBoardingNavGraph(navController = navController)
+        homeNavGraph(navController = navController)
     }
 }

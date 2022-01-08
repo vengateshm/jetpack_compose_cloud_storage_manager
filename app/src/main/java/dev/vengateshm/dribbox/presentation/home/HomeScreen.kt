@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import dev.vengateshm.dribbox.Screen
 import dev.vengateshm.dribbox.presentation.home.components.Drawer
 import dev.vengateshm.dribbox.presentation.home.components.Home
 import dev.vengateshm.dribbox.ui.theme.FabBgColor
@@ -21,15 +22,25 @@ import kotlinx.coroutines.launch
 fun HomeScreen(navController: NavController) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
+    val drawerMenuList = DrawerItem.getDrawerMenuList()
 
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
             Drawer(
-                coroutineScope,
-                scaffoldState,
-                navController,
-                DrawerItem.getDrawerMenuList()
+                coroutineScope = coroutineScope,
+                scaffoldState = scaffoldState,
+                navController = navController,
+                drawerMenuList = drawerMenuList,
+                onDrawerItemClick = { drawerItem ->
+                    coroutineScope.launch {
+                        scaffoldState.drawerState.close()
+                    }
+
+                    if (drawerItem.title == "Storage") {
+                        navController.navigate(Screen.StorageDetail.route)
+                    }
+                }
             )
         },
         drawerBackgroundColor = Color(0XFFF1F3F6),
@@ -54,4 +65,3 @@ fun HomeScreen(navController: NavController) {
             })
     }
 }
-

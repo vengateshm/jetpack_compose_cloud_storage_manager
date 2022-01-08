@@ -28,7 +28,8 @@ fun Drawer(
     coroutineScope: CoroutineScope,
     scaffoldState: ScaffoldState,
     navController: NavController,
-    drawerMenuList: List<DrawerItem>
+    drawerMenuList: List<DrawerItem>,
+    onDrawerItemClick: (DrawerItem) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
@@ -94,7 +95,11 @@ fun Drawer(
 
         drawerMenuList.forEach { drawerItem ->
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        onDrawerItemClick(drawerItem)
+                    },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Box(
@@ -135,7 +140,7 @@ fun Drawer(
                 painter = painterResource(id = R.drawable.ic_logout),
                 contentDescription = "Logout icon",
                 tint = Color(0XFF1B1D28),
-                modifier = Modifier.size(18.dp )
+                modifier = Modifier.size(18.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(

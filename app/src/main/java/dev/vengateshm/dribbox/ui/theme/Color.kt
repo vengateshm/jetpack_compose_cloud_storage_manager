@@ -22,3 +22,9 @@ val FabBgColor = Color(0XFF22215B)
 val TextColorLogin1 = Color(0XFF1B1D28)
 
 val TextColor1 = Color(0XFF22215B)
+
+val StorageItemColor1 = Color(0XFF22215B)
+val StorageItemColor2 = Color(0XFFFFC700)
+val StorageItemColor3 = Color(0XFF4CE364)
+val StorageItemColor4 = Color(0XFF567DF4)
+val StorageItemColor5 = Color(0XFFFF842B)
