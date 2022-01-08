@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import dev.vengateshm.dribbox.presentation.home.components.Drawer
 import dev.vengateshm.dribbox.presentation.home.components.Home
 import dev.vengateshm.dribbox.ui.theme.FabBgColor
+import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @Composable
@@ -45,7 +46,12 @@ fun HomeScreen(navController: NavController) {
             }
         }
     ) {
-        Home(folderList = Folder.getFoldersList())
+        Home(folderList = Folder.getFoldersList(),
+            onHeaderMenuClick = {
+                coroutineScope.launch {
+                    scaffoldState.drawerState.open()
+                }
+            })
     }
 }
 

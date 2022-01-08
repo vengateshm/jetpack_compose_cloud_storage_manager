@@ -1,9 +1,6 @@
 package dev.vengateshm.dribbox.presentation.home.components
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -27,9 +24,9 @@ import dev.vengateshm.dribbox.ui.theme.TextColor1
 
 @ExperimentalFoundationApi
 @Composable
-fun Home(folderList: List<Folder>) {
+fun Home(folderList: List<Folder>, onHeaderMenuClick: () -> Unit) {
     Column {
-        Header()
+        Header(onHeaderMenuClick)
         SearchBar()
         Filter()
         FolderGrid(folderList)
@@ -37,7 +34,7 @@ fun Home(folderList: List<Folder>) {
 }
 
 @Composable
-fun Header() {
+fun Header(onHeaderMenuClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,7 +51,10 @@ fun Header() {
         )
         Image(
             painter = painterResource(id = R.drawable.ic_header_icon),
-            contentDescription = "Header icon"
+            contentDescription = "Header icon",
+            modifier = Modifier.clickable {
+                onHeaderMenuClick()
+            }
         )
     }
 }
@@ -145,7 +145,7 @@ fun Filter() {
 fun FolderGrid(folderList: List<Folder>) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
-        contentPadding = PaddingValues(16.dp),
+        contentPadding = PaddingValues(4.dp)
     ) {
         items(folderList) { folder ->
             FolderItem(folder = folder)
@@ -155,44 +155,49 @@ fun FolderGrid(folderList: List<Folder>) {
 
 @Composable
 fun FolderItem(folder: Folder) {
-    Row(
-        modifier = Modifier
-            .background(
-                color = folder.backgroundColor!!,
-                shape = RoundedCornerShape(20.dp)
-            )
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Column {
-            Image(
-                painter = painterResource(id = folder.folderIconRes!!),
-                contentDescription = "Folder image"
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = folder.name,
-                fontSize = 15.sp,
-                fontWeight = FontWeight(500),
-                color = folder.textColor!!
-            )
-            Text(
-                text = folder.date,
-                fontSize = 10.sp,
-                fontWeight = FontWeight(400),
-                color = folder.textColor
-            )
-        }
-
-        IconButton(
-            onClick = { /*TODO*/ },
-            modifier = Modifier.align(Alignment.Top)
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .padding(4.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = folder.backgroundColor!!,
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_more_option),
-                contentDescription = "More icon",
-                tint = folder.textColor!!
-            )
+            Column {
+                Image(
+                    painter = painterResource(id = folder.folderIconRes!!),
+                    contentDescription = "Folder image"
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = folder.name,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight(500),
+                    color = folder.textColor!!
+                )
+                Text(
+                    text = folder.date,
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight(400),
+                    color = folder.textColor
+                )
+            }
+
+            IconButton(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.align(Alignment.Top)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_more_option),
+                    contentDescription = "More icon",
+                    tint = folder.textColor!!
+                )
+            }
         }
     }
 }
