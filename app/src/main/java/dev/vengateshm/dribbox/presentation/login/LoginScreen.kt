@@ -17,12 +17,12 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dev.vengateshm.dribbox.R
 import dev.vengateshm.dribbox.Screen
+import dev.vengateshm.dribbox.ui.theme.TextColorLogin1
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -174,7 +174,12 @@ fun LoginScreen(navController: NavController) {
                     .padding(bottom = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Use Social Login")
+                Text(
+                    text = "Use Social Login",
+                    color = TextColorLogin1,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight(400)
+                )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -210,7 +215,12 @@ fun LoginScreen(navController: NavController) {
                         )
                     }
                 }
-                Text(text = "Create an account")
+                Text(
+                    text = "Create an account",
+                    color = TextColorLogin1,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight(400)
+                )
             }
         }
     }

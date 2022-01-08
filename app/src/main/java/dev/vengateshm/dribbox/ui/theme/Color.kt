@@ -18,3 +18,7 @@ val FolderTextRed = Color(0XFFAC4040)
 val FolderTextGreen = Color(0XFF23B0B0)
 
 val FabBgColor = Color(0XFF22215B)
+
+val TextColorLogin1 = Color(0XFF1B1D28)
+
+val TextColor1 = Color(0XFF22215B)
