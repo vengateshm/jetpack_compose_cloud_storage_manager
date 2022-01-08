@@ -37,7 +37,7 @@ fun DribboxTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = DribboxTypography,
         shapes = Shapes,
         content = content
     )
