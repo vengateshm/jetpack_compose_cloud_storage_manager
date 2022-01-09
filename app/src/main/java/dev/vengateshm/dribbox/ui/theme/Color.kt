@@ -29,3 +29,5 @@ val StorageItemColor4 = Color(0XFF567DF4)
 val StorageItemColor5 = Color(0XFFFF842B)
 
 val ToggleSwitchColor = Color(0XFF00BCD4)
+
+val ProfileAvatarDetailBgColor = Color(0XFF22215B)

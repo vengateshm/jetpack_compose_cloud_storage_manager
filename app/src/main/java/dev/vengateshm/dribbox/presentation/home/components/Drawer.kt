@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,7 +51,10 @@ fun Drawer(
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_avatar),
-                    contentDescription = "Profile avatar"
+                    contentDescription = "Profile avatar",
+                    Modifier
+                        .size(48.dp)
+                        .clip(RoundedCornerShape(percent = 50))
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))

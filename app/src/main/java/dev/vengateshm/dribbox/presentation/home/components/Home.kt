@@ -157,9 +157,9 @@ fun FolderGrid(folderList: List<Folder>) {
 }
 
 @Composable
-fun FolderItem(folder: Folder) {
+fun FolderItem(modifier: Modifier = Modifier, folder: Folder) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(4.dp)
     ) {
