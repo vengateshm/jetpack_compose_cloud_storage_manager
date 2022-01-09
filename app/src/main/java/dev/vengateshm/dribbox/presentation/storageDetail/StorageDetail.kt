@@ -1,5 +1,6 @@
 package dev.vengateshm.dribbox.presentation.storageDetail
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,19 +13,20 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import dev.vengateshm.dribbox.R
 import dev.vengateshm.dribbox.ui.theme.TextColor1
 
 @Composable
-fun StorageDetailScreen(navController: NavController) {
+fun StorageDetail(onBack: () -> Unit) {
+    BackHandler(onBack = onBack)
     Column(modifier = Modifier.fillMaxSize()) {
-        StorageHeader(navController)
+        StorageHeader(
+            onBack = onBack
+        )
         StorageChart()
         Spacer(modifier = Modifier.height(16.dp))
         StorageList(StorageItem.getStorageItems())
@@ -32,7 +34,7 @@ fun StorageDetailScreen(navController: NavController) {
 }
 
 @Composable
-fun StorageHeader(navController: NavController) {
+fun StorageHeader(onBack: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,7 +42,9 @@ fun StorageHeader(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { navController.navigateUp() }) {
+        IconButton(
+            onClick = onBack
+        ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_back_arrow),
                 contentDescription = "Back arrow icon"

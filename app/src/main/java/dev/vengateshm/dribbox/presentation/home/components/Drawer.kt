@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,16 +19,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dev.vengateshm.dribbox.R
 import dev.vengateshm.dribbox.presentation.home.DrawerItem
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Composable
 fun Drawer(
-    coroutineScope: CoroutineScope,
-    scaffoldState: ScaffoldState,
+    selectedDrawerItem: String,
     navController: NavController,
     drawerMenuList: List<DrawerItem>,
-    onDrawerItemClick: (DrawerItem) -> Unit
+    onDrawerItemClick: (DrawerItem) -> Unit,
+    closeDrawer: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
@@ -75,11 +72,7 @@ fun Drawer(
             }
 
             IconButton(
-                onClick = {
-                    coroutineScope.launch {
-                        scaffoldState.drawerState.close()
-                    }
-                },
+                onClick = closeDrawer,
                 modifier = Modifier
                     .size(24.dp)
                     .padding(top = 8.dp)
@@ -107,7 +100,7 @@ fun Drawer(
                         .width(8.dp)
                         .height(32.dp)
                         .background(
-                            color = if (drawerItem.isSelected) Color(0XFF567DF4) else Color(
+                            color = if (drawerItem.title == selectedDrawerItem) Color(0XFF567DF4) else Color(
                                 0XFFFFFFFF
                             )
                         )
@@ -116,7 +109,9 @@ fun Drawer(
                 Text(
                     text = drawerItem.title,
                     fontSize = 16.sp,
-                    fontWeight = if (drawerItem.isSelected) FontWeight(700) else FontWeight(500),
+                    fontWeight = if (drawerItem.title == selectedDrawerItem) FontWeight(700) else FontWeight(
+                        500
+                    ),
                     color = Color(0XFF1B1D28)
                 )
             }

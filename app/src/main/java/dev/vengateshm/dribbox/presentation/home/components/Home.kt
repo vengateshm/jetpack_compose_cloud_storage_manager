@@ -24,7 +24,10 @@ import dev.vengateshm.dribbox.ui.theme.TextColor1
 
 @ExperimentalFoundationApi
 @Composable
-fun Home(folderList: List<Folder>, onHeaderMenuClick: () -> Unit) {
+fun Home(onHeaderMenuClick: () -> Unit) {
+    val folderList by lazy {
+        Folder.getFoldersList()
+    }
     Column {
         Header(onHeaderMenuClick)
         SearchBar()
@@ -155,9 +158,11 @@ fun FolderGrid(folderList: List<Folder>) {
 
 @Composable
 fun FolderItem(folder: Folder) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(4.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
