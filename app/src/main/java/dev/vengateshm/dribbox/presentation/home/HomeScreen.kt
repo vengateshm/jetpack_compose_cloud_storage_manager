@@ -126,19 +126,11 @@ fun HomeScreen() {
             composable(route = Screen.Settings.route) {
                 Settings(
                     onBack = {
-                        setDefaultDrawerItem(selectedDrawerItem, navController)
+                        selectedDrawerItem = "Home"
+                        navController.navigateUp()
                     }
                 )
             }
         }
     }
-}
-
-private fun setDefaultDrawerItem(
-    selectedDrawerItem: String,
-    navController: NavHostController
-) {
-    var selectedDrawerItem1 = selectedDrawerItem
-    selectedDrawerItem1 = "Home"
-    navController.navigateUp()
 }

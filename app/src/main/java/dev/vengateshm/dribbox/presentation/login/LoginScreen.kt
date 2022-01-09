@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dev.vengateshm.dribbox.R
 import dev.vengateshm.dribbox.Screen
-import dev.vengateshm.dribbox.ui.theme.TextColorLogin1
+import dev.vengateshm.dribbox.ui.theme.TextColor2
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -176,7 +176,7 @@ fun LoginScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Use Social Login",
-                    color = TextColorLogin1,
+                    color = TextColor2,
                     fontSize = 12.sp,
                     fontWeight = FontWeight(400)
                 )
@@ -217,7 +217,7 @@ fun LoginScreen(navController: NavController) {
                 }
                 Text(
                     text = "Create an account",
-                    color = TextColorLogin1,
+                    color = TextColor2,
                     fontSize = 16.sp,
                     fontWeight = FontWeight(400)
                 )
