@@ -6,7 +6,6 @@ import androidx.compose.material.ModalDrawer
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -20,7 +19,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onLogoutClick: () -> Unit) {
     val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
     val drawerMenuList = DrawerItem.getDrawerMenuList()
@@ -48,7 +47,6 @@ fun HomeScreen() {
         drawerContent = {
             Drawer(
                 selectedDrawerItem = selectedDrawerItem,
-                navController = navController,
                 drawerMenuList = drawerMenuList,
                 closeDrawer = {
                     closeDrawer()
@@ -92,7 +90,8 @@ fun HomeScreen() {
                             }
                         }
                     }
-                }
+                },
+                onLogoutClick = onLogoutClick
             )
         }
     ) {

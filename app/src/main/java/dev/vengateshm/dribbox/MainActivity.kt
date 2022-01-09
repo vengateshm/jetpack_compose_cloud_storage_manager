@@ -39,7 +39,9 @@ fun MainScreen() {
     ) {
         onBoardingNavGraph(navController = navController)
         composable(Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(onLogoutClick = {
+                navController.navigateUp()
+            })
         }
     }
 }

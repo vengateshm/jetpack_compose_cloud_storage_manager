@@ -24,10 +24,10 @@ import dev.vengateshm.dribbox.presentation.home.DrawerItem
 @Composable
 fun Drawer(
     selectedDrawerItem: String,
-    navController: NavController,
     drawerMenuList: List<DrawerItem>,
     onDrawerItemClick: (DrawerItem) -> Unit,
-    closeDrawer: () -> Unit
+    closeDrawer: () -> Unit,
+    onLogoutClick: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
@@ -131,7 +131,7 @@ fun Drawer(
                     vertical = 8.dp
                 )
                 .clickable {
-                    navController.navigateUp()
+                    onLogoutClick()
                 },
             verticalAlignment = Alignment.CenterVertically,
         ) {
