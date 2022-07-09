@@ -1,6 +1,7 @@
 package dev.vengateshm.dribbox.presentation.settings
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -18,7 +19,10 @@ import dev.vengateshm.dribbox.ui.theme.TextColor2
 import dev.vengateshm.dribbox.ui.theme.ToggleSwitchColor
 
 @Composable
-fun Settings(onBack: () -> Unit) {
+fun Settings(
+    onBack: () -> Unit,
+    onItemClick: (String) -> Unit,
+) {
     BackHandler(onBack = onBack)
     Column(modifier = Modifier.fillMaxSize()) {
         IconButton(
@@ -31,7 +35,7 @@ fun Settings(onBack: () -> Unit) {
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Storage Details",
+            text = "Settings",
             color = TextColor2,
             fontSize = 30.sp,
             fontWeight = FontWeight(700),
@@ -47,7 +51,10 @@ fun Settings(onBack: () -> Unit) {
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
                 color = TextColor2,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                modifier = Modifier
+                    .clickable { onItemClick(settingsItem.name) }
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             )
         }
 
@@ -76,7 +83,7 @@ fun CheckBoxSetting(name: String, isChecked: Boolean) {
             fontWeight = FontWeight(700),
             color = TextColor2
         )
-        IconToggleButton(checked = isChecked, onCheckedChange = {},) {
+        IconToggleButton(checked = isChecked, onCheckedChange = {}) {
             Icon(
                 painter = painterResource(id = if (isChecked) R.drawable.ic_baseline_toggle_on_24 else R.drawable.ic_baseline_toggle_off_24),
                 contentDescription = null,

@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -112,26 +113,33 @@ fun StorageList(storageItems: List<StorageItem>) {
 
 @Composable
 fun StorageItem(storageItem: StorageItem) {
-    Row(verticalAlignment = Alignment.Top) {
-        Box(
-            modifier = Modifier
-                .size(10.dp)
-                .background(color = storageItem.color!!, shape = RoundedCornerShape(10.dp))
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Column {
+    Column {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .size(10.dp)
+                    .background(color = storageItem.color!!, shape = RoundedCornerShape(10.dp))
+                    .padding(top = 4.dp)
+            )
+            Spacer(modifier = Modifier.width(16.dp))
             Text(
+                modifier = Modifier.weight(1f),
                 text = storageItem.name,
                 fontSize = 18.sp,
                 fontWeight = FontWeight(500),
-                color = TextColor1
+                color = TextColor1,
             )
-            Text(
-                text = storageItem.occupiedSize,
-                fontSize = 12.sp,
-                fontWeight = FontWeight(500),
-                color = TextColor1
-            )
+            LinearProgressIndicator(
+                modifier = Modifier.weight(0.6f),
+                progress = storageItem.progress / 100f,
+                color = storageItem.color)
         }
+        Text(
+            modifier = Modifier.padding(start = 26.dp),
+            text = storageItem.occupiedSize,
+            fontSize = 12.sp,
+            fontWeight = FontWeight(500),
+            color = TextColor1
+        )
     }
 }

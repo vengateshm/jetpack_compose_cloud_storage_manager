@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.vengateshm.dribbox.Screen
+import dev.vengateshm.dribbox.presentation.changePassword.ChangePassword
 import dev.vengateshm.dribbox.presentation.home.components.Drawer
 import dev.vengateshm.dribbox.presentation.home.components.Home
 import dev.vengateshm.dribbox.presentation.profile.Profile
@@ -127,8 +128,21 @@ fun HomeScreen(onLogoutClick: () -> Unit) {
                     onBack = {
                         selectedDrawerItem = "Home"
                         navController.navigateUp()
+                    },
+                    onItemClick = { settingsName ->
+                        when (settingsName) {
+                            "Change Password" -> {
+                                navController.navigate(Screen.ChangePassword.route)
+                            }
+                        }
                     }
                 )
+            }
+            composable(route = Screen.ChangePassword.route) {
+                ChangePassword(onBack = {
+                    selectedDrawerItem = "Home"
+                    navController.navigateUp()
+                })
             }
         }
     }
