@@ -2,6 +2,8 @@
 
 This a mock cloud storage app developed using Jetpack Compose UI toolkit.
 
+UI Design https://www.uplabs.com/posts/dribbox-online-cloud-storage
+
 **Screenshots**
 
 <img src="https://user-images.githubusercontent.com/40466166/148692808-575f57a3-bd97-4d9c-9c2d-7195e06ed791.png" width="200" height="380"> <img src="https://user-images.githubusercontent.com/40466166/148692812-2dcf9f24-dfc6-43af-82d7-6cc61da16109.png" width="200" height="380"> <img src="https://user-images.githubusercontent.com/40466166/148692814-8fd099c9-45bb-4b79-9db7-49ea00aca4a3.png" width="200" height="380">
